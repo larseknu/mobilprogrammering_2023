@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Assignment01</string>
+    <string name="world">World!</string>
+    <string name="exist_live">Don\'t just exist, live!</string>
+</resources>
