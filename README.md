@@ -1,2 +1,2 @@
-# mobilprogrammering_2023
-Examples for the course in mobile programming.
+# Mobile Programming - 2023
+Examples in Android for the course in mobile programming at Ostfold University College
