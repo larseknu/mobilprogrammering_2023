@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Assignment02_Recipe</string>
+    <string name="pancakes">Pancakes</string>
+    <string name="_45min">45min</string>
+    <string name="pizza">Pizza</string>
+    <string name="_30min">30min</string>
+</resources>
