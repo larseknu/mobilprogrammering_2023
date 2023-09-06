@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ComposeCuisine</string>
+    <string name="pancakes">Pancakes</string>
+    <string name="pizza">Pizza</string>
+    <string name="blueberry_pancakes">Blueberry Pancakes</string>
+    <string name="hawaiian_pizza">Hawaiian Pizza</string>
+</resources>
