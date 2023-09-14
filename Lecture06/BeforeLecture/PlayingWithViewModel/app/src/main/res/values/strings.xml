@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PlayingWithViewModel</string>
+    <string name="movie_poster">Movie poster</string>
+    <string name="seen">Seen</string>
+    <string name="not_seen">Not seen</string>
+    <string name="seen_num_of_total_movies">Seen %d of %d movies</string>
+    <string name="answered_number_of_total_movies">%d of %d movies</string>
+    <string name="go_to_summary">Go to summary</string>
+    <string name="reset">Reset</string>
+    <string name="selection_done">Selection done</string>
+</resources>
