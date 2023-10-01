@@ -1,6 +1,5 @@
 package no.larseknu.hiof.compose.playingwithfirebase
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
@@ -9,22 +8,17 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Snackbar
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.makeitso.screens.sign_up.SignUpScreen
+import no.larseknu.hiof.compose.playingwithfirebase.screen.sign_up.SignUpScreen
 import no.larseknu.hiof.compose.playingwithfirebase.screen.moviedetail.MovieDetailScreen
 import no.larseknu.hiof.compose.playingwithfirebase.screen.movielist.MovieListScreen
 import no.larseknu.hiof.compose.playingwithfirebase.ui.theme.PlayingWithFirebaseTheme

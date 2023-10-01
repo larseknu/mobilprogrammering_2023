@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 
-package com.example.makeitso.screens.sign_up
+package no.larseknu.hiof.compose.playingwithfirebase.screen.sign_up
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
