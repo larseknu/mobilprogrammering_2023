@@ -18,9 +18,6 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
     override val hasUser: Boolean
         get() = auth.currentUser != null
 
-    val isAnonymous: Boolean
-        get() = auth.currentUser?.isAnonymous ?: true
-
     override val currentUser: Flow<User>
         get() = callbackFlow {
             val listener =
@@ -39,11 +36,10 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
     }
 
     override suspend fun linkAccount(email: String, password: String, onResult: (Throwable?) -> Unit) {
-        val credential = EmailAuthProvider.getCredential(email, password)
-        auth.currentUser!!.linkWithCredential(credential).addOnFailureListener {
-            onResult(Throwable("We failed to link account"))
-        }.
-            addOnCompleteListener { onResult(it.exception) }.await()
+        // Av en eller annen grunn har fungerer ikke linkingen av kontoer nå?
+        // val credential = EmailAuthProvider.getCredential(email, password)
+        // auth.currentUser!!.linkWithCredential(credential).addOnCompleteListener { onResult(it.exception) }.await()
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { onResult(it.exception) }.await()
     }
 
     override suspend fun signOut() {

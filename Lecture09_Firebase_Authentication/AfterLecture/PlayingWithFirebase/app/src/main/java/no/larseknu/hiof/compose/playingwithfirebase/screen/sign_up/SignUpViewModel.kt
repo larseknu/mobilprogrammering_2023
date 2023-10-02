@@ -20,6 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import no.larseknu.hiof.compose.playingwithfirebase.R
 import no.larseknu.hiof.compose.playingwithfirebase.common.ext.isValidEmail
@@ -38,6 +39,8 @@ class SignUpViewModel @Inject constructor(
     get() = uiState.value.email
   private val password
     get() = uiState.value.password
+
+  val isAnonymous = accountService.currentUser.map { it.isAnonymous }
 
   fun onEmailChange(newValue: String) {
     uiState.value = uiState.value.copy(email = newValue)
@@ -95,6 +98,12 @@ class SignUpViewModel @Inject constructor(
         else
           uiState.value = uiState.value.copy(errorMessage = R.string.could_not_create_account)
       }
+    }
+  }
+
+  fun onSignOutClick() {
+    viewModelScope.launch {
+      accountService.signOut()
     }
   }
 }

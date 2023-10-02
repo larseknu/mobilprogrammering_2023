@@ -50,41 +50,54 @@ fun SignUpScreen(
   viewModel: SignUpViewModel = hiltViewModel()
 ) {
   val uiState by viewModel.uiState
+  val isAnonymous by viewModel.isAnonymous.collectAsState(initial = true)
+
   val fieldModifier = Modifier
     .fillMaxWidth()
     .padding(16.dp, 4.dp)
 
-  Column(
-    modifier = modifier
-      .fillMaxWidth()
-      .fillMaxHeight()
-      .verticalScroll(rememberScrollState()),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally
-  ) {
-    if (uiState.errorMessage != 0)
-      Text(text = stringResource(id = uiState.errorMessage))
+  if (isAnonymous) {
+    Column(
+      modifier = modifier
+        .fillMaxWidth()
+        .fillMaxHeight()
+        .verticalScroll(rememberScrollState()),
+      verticalArrangement = Arrangement.Center,
+      horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+      if (uiState.errorMessage != 0)
+        Text(text = stringResource(id = uiState.errorMessage))
 
-    EmailField(uiState.email, viewModel::onEmailChange, fieldModifier)
-    PasswordField(uiState.password, viewModel::onPasswordChange, fieldModifier)
+      EmailField(uiState.email, viewModel::onEmailChange, fieldModifier)
+      PasswordField(uiState.password, viewModel::onPasswordChange, fieldModifier)
 
-    RepeatPasswordField(uiState.repeatPassword, viewModel::onRepeatPasswordChange, fieldModifier)
+      RepeatPasswordField(uiState.repeatPassword, viewModel::onRepeatPasswordChange, fieldModifier)
 
-    Row {
-      Button(
-        onClick = { viewModel.onLoginClick(loggedIn) },
-        modifier = Modifier
-          .padding(16.dp, 8.dp),
-      ) {
-        Text(text = stringResource(R.string.login), fontSize = 16.sp)
+      Row {
+        Button(
+          onClick = { viewModel.onLoginClick(loggedIn) },
+          modifier = Modifier
+            .padding(16.dp, 8.dp),
+        ) {
+          Text(text = stringResource(R.string.login), fontSize = 16.sp)
+        }
+        Button(
+          onClick = { viewModel.onSignUpClick(loggedIn) },
+          modifier = Modifier
+            .padding(16.dp, 8.dp),
+        ) {
+          Text(text = stringResource(R.string.create_account), fontSize = 16.sp)
+        }
       }
-      Button(
-        onClick = { viewModel.onSignUpClick(loggedIn) },
-        modifier = Modifier
-          .padding(16.dp, 8.dp),
-      ) {
-        Text(text = stringResource(R.string.create_account), fontSize = 16.sp)
-      }
+    }
+  }
+  else {
+    Button(
+      onClick = { viewModel.onSignOutClick() },
+      modifier = Modifier
+        .padding(16.dp, 8.dp),
+    ) {
+      Text(text = stringResource(R.string.sign_out), fontSize = 16.sp)
     }
   }
 }
