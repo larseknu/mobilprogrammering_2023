@@ -28,6 +28,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -66,7 +67,8 @@ fun SignUpScreen(
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
       if (uiState.errorMessage != 0)
-        Text(text = stringResource(id = uiState.errorMessage))
+        Text(text = stringResource(id = uiState.errorMessage),
+          Modifier.padding(vertical = 8.dp))
 
       EmailField(uiState.email, viewModel::onEmailChange, fieldModifier)
       PasswordField(uiState.password, viewModel::onPasswordChange, fieldModifier)

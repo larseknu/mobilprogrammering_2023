@@ -20,12 +20,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import no.larseknu.hiof.compose.playingwithfirebase.R
 import no.larseknu.hiof.compose.playingwithfirebase.common.ext.isValidEmail
 import no.larseknu.hiof.compose.playingwithfirebase.common.ext.isValidPassword
 import no.larseknu.hiof.compose.playingwithfirebase.service.AccountService
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -66,11 +68,14 @@ class SignUpViewModel @Inject constructor(
     }
 
     viewModelScope.launch {
-      accountService.authenticate(email, password) { error ->
-        if (error == null)
-          loggedIn()
-        else
-          uiState.value = uiState.value.copy(errorMessage = R.string.could_not_log_in)
+     try {
+        accountService.authenticate(email, password) { error ->
+          if (error == null)
+            loggedIn()
+        }
+      }
+      catch(e: Exception) {
+        uiState.value = uiState.value.copy(errorMessage = R.string.could_not_log_in)
       }
     }
   }
@@ -92,11 +97,14 @@ class SignUpViewModel @Inject constructor(
     }
 
     viewModelScope.launch {
-      accountService.linkAccount(email, password) { error ->
-        if (error == null)
-          loggedIn()
-        else
-          uiState.value = uiState.value.copy(errorMessage = R.string.could_not_create_account)
+      try {
+        accountService.linkAccount(email, password) { error ->
+          if (error == null)
+            loggedIn()
+         }
+      }
+      catch(e: Exception) {
+        uiState.value = uiState.value.copy(errorMessage = R.string.could_not_create_account)
       }
     }
   }
